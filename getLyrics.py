@@ -3,7 +3,8 @@ import re
 import os
 import json
 
-genius = lyricsgenius.Genius("o8qt7EBCuFPzv7uohBxtA3IHfdwtPyltGSwlPPKAqTmidVkUjABzxY7lnLOeegS-")
+geniusToken = os.environ["GENIUS_TOKEN"]
+genius = lyricsgenius.Genius(geniusToken)
 genius.verbose = False
 genius.excluded_terms = ["(Remix)", "(Live)"] 
 
