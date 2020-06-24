@@ -25,4 +25,4 @@ async def getlyrics(ctx, *, args):
     output = f"{ctx.author.mention}\n```{result}```"
     await message.edit(content=output)
 
-bot.run('NzI0MTQzMTY3MzgwNzgzMTA1.Xu75Kw.Qp2sbrlUZa6NJg3wkb5ueriKRz0')
+bot.run(token)

@@ -1,18 +1,34 @@
 import lyricsgenius
-from re import search
+import re
+import os
+import json
 
 genius = lyricsgenius.Genius("o8qt7EBCuFPzv7uohBxtA3IHfdwtPyltGSwlPPKAqTmidVkUjABzxY7lnLOeegS-")
 genius.verbose = False
 genius.excluded_terms = ["(Remix)", "(Live)"] 
-def searchFor(input):
-	#input = input("Enter the query: ")
-	if "-" not in input:
-		print("Please use format Artist-Song")
-		return
-	artistName = input[:input.index('-')]
-	artistName = artistName.strip()
+
+def checkCache(artist):
+	artist = "".join(artist.split())
+#	songname = songname.strip()
+
+	for root, dirs, files in os.walk(os.getcwd()):
+		print(files)
+		for file in files:
+			if re.search(artist, file, re.IGNORECASE):
+				return True, file
+	return False, ""
+
+def fromCache(songName, fileName):
+	with open(fileName) as f:
+		data = json.load(f)
+
+	for song in data["songs"]:
+		if re.search(songName, song["title"], re.IGNORECASE):
+			return song["lyrics"]
+
+def searchApi(artistName, songName):			
 	print(artistName)
-	songName = input[input.index('-')+1:].strip()
+	
 	print(songName)
 	artist = genius.search_artist(artistName, max_songs=None, sort="title", get_full_info=False, allow_name_change=False)
 	##print(artist.name)
@@ -20,11 +36,12 @@ def searchFor(input):
 
 
 	if(artist is not None):
+		artist.save_lyrics()
 		exists = False
 		for pair in artist.songs:
 			pairSong = pair.title.strip()
 			pairSong = pairSong.lower()
-			if search(songName, pairSong):
+			if re.search(songName, pairSong):
 				exists = True
 				break			
 			else:
@@ -39,3 +56,22 @@ def searchFor(input):
 	else:
 		return "Artist not found"
 
+def searchFor(input):
+	#input = input("Enter the query: ")
+	if "-" not in input:
+		return "Please use format Artist-Song"
+	
+	artistName = input[:input.index('-')]
+	artistName = artistName.strip()
+
+	songName = input[input.index('-')+1:].strip()
+
+	isCached, fileName = checkCache(artistName)
+
+	if isCached:
+		fromCache(songName, fileName)
+	else: 
+		searchApi(artistName, songName)
+
+
+	
