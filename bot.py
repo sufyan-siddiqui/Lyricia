@@ -22,7 +22,7 @@ async def getlyrics(ctx, *, args):
     print(args)
     message = await ctx.send(f"Processing {ctx.author}'s request..")
     result = searchFor(args)
-    output = f"{ctx.author.mention}\n{result}"
+    output = f"{ctx.author.mention}\n```{result}```"
     await message.edit(content=output)
 
 bot.run('NzI0MTQzMTY3MzgwNzgzMTA1.Xu75Kw.Qp2sbrlUZa6NJg3wkb5ueriKRz0')
