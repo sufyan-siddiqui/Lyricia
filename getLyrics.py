@@ -70,9 +70,9 @@ def searchFor(input):
 	isCached, fileName = checkCache(artistName)
 
 	if isCached:
-		fromCache(songName, fileName)
+		response = fromCache(songName, fileName)
 	else: 
-		searchApi(artistName, songName)
+		response = searchApi(artistName, songName)
 
-
+	return response
 	
