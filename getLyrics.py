@@ -25,7 +25,13 @@ def fromCache(songName, fileName):
 
 	for song in data["songs"]:
 		if re.search(songName, song["title"], re.IGNORECASE):
-			return song["lyrics"]
+			lyrics = song["lyrics"]
+			if lyrics is not None:
+				return song["lyrics"]
+			else:
+				return "Sorry, but it appears I do not have the lyrics of this song"
+		else:
+			return "Hmm..looks like I can't find the song \""+songName+"\"\nmaybe you didn't type the name correctly"
 
 def searchApi(artistName, songName):			
 	print(artistName)
