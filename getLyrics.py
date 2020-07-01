@@ -31,7 +31,7 @@ def fromCache(songName, fileName):
 			else:
 				return "Sorry, but it appears I do not have the lyrics of this song"
 		else:
-			return "Hmm..looks like I can't find the song \""+songName+"\"\nmaybe you didn't type the name correctly"
+			return "Hmm..it looks like I can't find the song \""+songName+"\"\nmaybe you didn't type the name correctly"
 
 def searchApi(artistName, songName):			
 	print(artistName)
@@ -58,15 +58,15 @@ def searchApi(artistName, songName):
 			song = genius.search_song(songName, artist.name)
 			return song.lyrics
 		else:
-			return f"Song {songName} not Found By {artistName}"
+			return f"It appears that the Song \"{songName}\" by \"{artistName}\" does not exist in my database"
 
 	else:
-		return "Artist not found"
+		return f"Are you sure you typed the artist's name right? I do not know anyone by the name \"{artistName}\""
 
 def searchFor(input):
 	#input = input("Enter the query: ")
 	if "-" not in input:
-		return "Please use format Artist-Song"
+		return "**Please make sure you separate the aritist's and song's name with a hyphen**\nExample: ArtistName-SongName"
 	
 	artistName = input[:input.index('-')]
 	artistName = artistName.strip()
