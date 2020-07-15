@@ -9,16 +9,7 @@ token = os.environ["TOKEN"]
 async def on_ready():
     print("Bot is ready")
 
-def greetings():
-    hi = "Hi, how can I help you? I listen to the following command(s)"
-    cmd = "```!getlyrics ArtistName-SongName - **to get the lyrics of the song**```"
-    return hi+"\n"+cmd
-
-@bot.command()
-async def lyricia(ctx, *, args):
-    await ctx.send(greetings())
-
-@bot.command()
+@bot.command(brief="Tells you the lyrics of the song", description="Tells you the lyrics of a song by passing in artist's and song's name as args\nuse the args as \"ArtistName-SongName\" without quotes\nmake sure to place hyphen between Artist and Song name ")
 async def getlyrics(ctx, *, args):
     print(args)
     message = await ctx.send(f"```Processing {ctx.author}'s request..```")
