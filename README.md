@@ -4,7 +4,7 @@ A shitty Discord Bot that will tell you the lyrics of a song.
 
 ## Commands
 
-**!getlyrics <args>** - pass the args in format ArtistName-SongName (separate artist and songname with a hyphen)
+**!getlyrics \<args\>** - pass the args in format ArtistName-SongName (separate artist and songname with a hyphen)
 
 ### To Invite:
 [Click Here](https://discord.com/api/oauth2/authorize?client_id=724143167380783105&permissions=2048&scope=bot)
