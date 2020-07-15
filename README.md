@@ -16,6 +16,6 @@ A shitty Discord Bot that will tell you the lyrics of a song.
 
 ## TODO:
 
-[ ] Heroku is a bitch, destroys my local files whenever I push new code so I'll probably have to use some other storage method
+- [ ] Heroku is a bitch, destroys my local files whenever I push new code so I'll probably have to use some other storage method
 
-[ ] Fix the API (make the search faster) 
+- [ ] Fix the API (make the search faster) 
